@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from "react";
-
+import "./tic-tac.css";
 const TicTacToe = () => {
     const [turn, setTurn] = useState('X')
     const [cells, setCells] = useState(Array(9).fill(''))
@@ -80,10 +80,10 @@ const TicTacToe = () => {
         }}>{cells[num]}
         </td>
     }
-    return <div>
+    return <div className={"container-t"}>
         <div className={"box-text"}>
-            <h1>Tic-Tac-Toe </h1>
-            <h3>Player : {turn}</h3>
+            <h1 >Tic-Tac-Toe </h1>
+            <h3 className={"title"}>Player : {turn}</h3>
         </div>
         <div>
             <table>
@@ -106,7 +106,7 @@ const TicTacToe = () => {
                 </tbody>
             </table>
             <div className={"margin"}>
-                <button onClick={() => {
+                <button className={"play-again"} onClick={() => {
                     handleReset()
                 }}>Play Again
                 </button>

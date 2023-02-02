@@ -3,7 +3,8 @@ import TicTacToe from "./Tic-tac-toe/Tic-tac-toe";
 
 function App() {
     return <div>
-        <TicTacToe/>
+        {/*<TicTacToe/>*/}
+
     </div>
 }
 
