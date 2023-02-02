@@ -1,10 +1,11 @@
 import './App.css';
-import TicTacToe from "./Tic-tac-toe/Tic-tac-toe";
+import TicTacToe from "./OldVersion/Tic-tac-toe/Tic-tac-toe";
+import MainComponent from "./Tic_Tac_Toe_2.0/MainComponent";
 
 function App() {
     return <div>
         {/*<TicTacToe/>*/}
-
+<MainComponent/>
     </div>
 }
 
