@@ -7,6 +7,18 @@
     height: 100vh;
 }
 
+.tic-title {
+    padding: 50px 0;
+}
+
+.message {
+    padding-bottom: 20px;
+}
+
+.board {
+
+}
+
 .board-row {
     display: flex;
     flex-direction: row;
