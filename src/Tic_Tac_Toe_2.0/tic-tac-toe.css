@@ -1,0 +1,39 @@
+.wrapper {
+    font-size: 20px;
+    flex-direction: column;
+    display: flex;
+    align-items: center;
+    background: #037bbc;
+    height: 100vh;
+}
+
+.board-row {
+    display: flex;
+    flex-direction: row;
+    border-bottom: 2px solid #ffffff;
+
+}
+
+.board-row:last-child {
+    border-bottom: none;
+}
+
+.btn {
+    background: none;
+    border: none;
+    outline: none;
+    cursor: pointer;
+}
+
+.square {
+    width: 80px;
+    height: 80px;
+    font-size: 2.5rem;
+    border-right: 2px solid #ffffff;
+    padding: 0;
+    transition: all 0.2s;
+}
+
+.square:last-child {
+    border-right: none;
+}
