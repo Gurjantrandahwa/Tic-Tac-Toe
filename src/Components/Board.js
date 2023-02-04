@@ -1,12 +1,16 @@
 import React from "react";
 import Square from "./Square";
 
-export default function Board({handleSquareClick,board}) {
+export default function Board({handleSquareClick, board, winningSquares}) {
 
     const renderSquare = (position) => {
-        return <Square value={board[position]} onClick={() => {
-            handleSquareClick(position)
-        }}/>
+        const isWinningSquare = winningSquares.includes(position);
+
+        return <Square value={board[position]}
+                       isWinningSquare={isWinningSquare}
+                       onClick={() => {
+                           handleSquareClick(position)
+                       }}/>
     }
     return <div className={"board"}>
         <div className={"board-row"}>

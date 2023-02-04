@@ -1,34 +1,60 @@
 import React, {useState} from "react";
-import Board from "./Board";
-import "./tic-tac-toe.css";
-import {calculateWinner} from "./helpers/helpers";
+import Board from "../Components/Board";
+import "./tic-tac-toe.scss"
+import {calculateWinner} from "../Components/helpers";
+import History from "../Components/History";
+import Status from "../Components/Status";
 
+const NEW_GAME = [{board: Array(9).fill(null), isNextX: false}]
 export default function Tic_tac_toe() {
-    const [board, setBoard] = useState(Array(9).fill(null));
-    const [isNextX, setIsNextX] = useState(false);
-    const winner = calculateWinner(board);
+    const [history, setHistory] = useState(NEW_GAME);
+    const [currentMove, setCurrentMove] = useState(0)
+    const current = history[currentMove]
+    const {winner, winningSquares} = calculateWinner(current.board);
 
     const handleSquareClick = (clickedPosition) => {
-        if (board[clickedPosition]) {
+        if (current.board[clickedPosition] || winner) {
             return;
         }
+        setHistory(prev => {
+            const last = prev[prev.length - 1]
 
-        setBoard((currentSquares) => {
-            return currentSquares.map((squareValue, position) => {
+            const newBoard = last.board.map((squareValue, position) => {
                 if (clickedPosition === position) {
-                    return isNextX ? "X" : "O"
+                    return last.isNextX ? "X" : "O"
                 }
                 return squareValue
-
-            })
-        })
-        setIsNextX(prev => !prev)
+            });
+            return prev.concat({board: newBoard, isNextX: !last.isNextX});
+        });
+        setCurrentMove(prevState => prevState + 1)
     }
-    return <div className={"wrapper"}>
-        <h1 className={"tic-title"}>Tic Tac Toe</h1>
-        <h2 className={"message"}>Message</h2>
-        <Board
-            board={board}
-            handleSquareClick={handleSquareClick}/>
+    const moveTo = (move) => {
+        setCurrentMove(move)
+    }
+    const newGame = () => {
+        setHistory(NEW_GAME)
+        setCurrentMove(0)
+    }
+    return <div className={"container"}>
+        <div className={"app-wrapper"}>
+            <h1>
+                Tic <span className={"text-green"}>Tac</span> Toe
+            </h1>
+            <Status winner={winner} current={current}/>
+            <Board
+                board={current.board}
+                handleSquareClick={handleSquareClick}
+                winningSquares={winningSquares}/>
+
+            <button
+                className={`btn-reset ${winner?'active':""}`}
+                onClick={newGame}
+            >
+                Start New Game
+            </button>
+            <History history={history} moveTo={moveTo} currentMove={currentMove}/>
+        </div>
+
     </div>
 }
