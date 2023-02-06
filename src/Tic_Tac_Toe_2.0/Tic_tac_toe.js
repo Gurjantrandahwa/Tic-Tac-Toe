@@ -53,7 +53,9 @@ export default function Tic_tac_toe() {
             >
                 Start New Game
             </button>
+            <h2 style={{padding:"15px"}}>Game History</h2>
             <History history={history} moveTo={moveTo} currentMove={currentMove}/>
+            <div className={"bg-balls"}/>
         </div>
 
     </div>

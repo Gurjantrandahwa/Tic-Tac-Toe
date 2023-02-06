@@ -4,8 +4,10 @@ import React from "react";
 export default function Square({value, onClick, isWinningSquare}) {
     return <>
         <button type={"button"}
-                style={{color: isWinningSquare ? "red" : "black"}}
-                className={"btn square"} onClick={onClick}>
+
+                className={`square ${isWinningSquare ? 'winning' : ''} ${
+                    value==='X'?'text-green':'text-orange'}`}
+                onClick={onClick}>
             {value}
         </button>
     </>
